@@ -1,0 +1,21 @@
+
+default: &default
+  adapter: postgresql
+  encoding: unicode
+  
+  pool: <%= ENV.fetch("RAILS_MAX_THREADS") { 5 } %>
+
+development:
+  <<: *default
+  database: rails_nginx_development
+
+test:
+  <<: *default
+  database: rails_nginx_test
+
+
+production:
+  <<: *default
+  database: rails_nginx_production
+  username: rails_nginx
+  password: <%= ENV['RAILS_NGINX_DATABASE_PASSWORD'] %>
